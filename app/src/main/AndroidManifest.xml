@@ -1,0 +1,56 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+
+    <!-- Required to keep the safety monitor alive when the app is backgrounded.
+         Uses a *visible* foreground service (not ACCESS_BACKGROUND_LOCATION) to
+         avoid being killed by the OS while remaining battery-honest. -->
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_LOCATION" />
+    <!-- Prevents the CPU from sleeping between periodic GPS fixes -->
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <!-- Required to post notifications on Android 13+ (API 33+).
+         The app requests this at runtime on first launch or when a safety event occurs. -->
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+
+    <!-- Optional for direct emergency SMS dispatch to guardians.
+         The app requests this at runtime only when manual SOS is triggered. -->
+    <uses-permission android:name="android.permission.SEND_SMS" />
+    <uses-feature android:name="android.hardware.telephony" android:required="false" />
+
+    <application
+        android:name=".SamrakshaApp"
+        android:allowBackup="false"
+        android:networkSecurityConfig="@xml/network_security_config"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.Samraksha">
+
+        <activity
+            android:name="com.samraksha.app.MainActivity"
+            android:exported="true"
+            android:theme="@style/Theme.Samraksha">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <!--
+            JourneySafetyService — battery-conscious foreground service that owns
+            the periodic GPS subscription during active journey monitoring.
+            foregroundServiceType="location" is the correct Android 10+ mechanism
+            for background GPS access without requiring ACCESS_BACKGROUND_LOCATION.
+        -->
+        <service
+            android:name="com.samraksha.app.journey.JourneySafetyService"
+            android:exported="false"
+            android:foregroundServiceType="location" />
+    </application>
+
+</manifest>

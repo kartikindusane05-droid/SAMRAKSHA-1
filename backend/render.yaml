@@ -1,0 +1,31 @@
+services:
+  - type: web
+    name: samraksha-backend
+    runtime: node
+    plan: free
+    region: oregon
+    buildCommand: npm install && npm run build && npm run migrate
+    startCommand: npm start
+    healthCheckPath: /health
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 10000
+      - key: DATABASE_URL
+        fromDatabase:
+          name: samraksha-db
+          property: connectionString
+      - key: CLIENT_ORIGIN
+        value: "*"
+      - key: JWT_SECRET
+        generateValue: true
+      - key: ADMIN_API_KEY
+        generateValue: true
+
+databases:
+  - name: samraksha-db
+    databaseName: samraksha_db
+    user: samraksha_user
+    plan: free
+    region: oregon

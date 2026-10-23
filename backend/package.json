@@ -1,0 +1,37 @@
+{
+  "name": "samraksha-backend",
+  "version": "1.0.0",
+  "description": "Backend API service for SAMRAKSHA Personal Safety Platform",
+  "main": "dist/server.js",
+  "scripts": {
+    "build": "tsc && node scripts/copy-migrations.js",
+    "start": "node dist/server.js",
+    "dev": "tsx watch src/server.ts",
+    "migrate": "node dist/db/migrate.js",
+    "migrate:dev": "tsx src/db/migrate.ts",
+    "db:verify": "tsx src/db/verify-db.ts",
+    "test": "tsx --test --test-concurrency=1 test/*.test.ts"
+  },
+  "keywords": [
+    "samraksha",
+    "safety",
+    "express",
+    "typescript"
+  ],
+  "author": "SAMRAKSHA Team",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "pg": "^8.23.1"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.17",
+    "@types/express": "^4.17.21",
+    "@types/node": "^20.14.9",
+    "@types/pg": "^8.23.1",
+    "tsx": "^4.16.2",
+    "typescript": "^5.5.2"
+  }
+}

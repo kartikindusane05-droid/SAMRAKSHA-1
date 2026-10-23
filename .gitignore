@@ -1,0 +1,48 @@
+.gradle/
+build/
+!gradle/wrapper/gradle-wrapper.jar
+!**/src/main/**/build/
+!**/src/test/**/build/
+
+### IntelliJ IDEA ###
+.idea/
+*.iws
+*.iml
+*.ipr
+out/
+
+### Android ###
+*.apk
+*.aab
+*.ap_
+*.dex
+local.properties
+
+### Kotlin ###
+.kotlin/
+
+### OS ###
+.DS_Store
+Thumbs.db
+
+# Backend environment secrets
+.env
+.env.*
+!.env.example
+!.env.production.example
+
+# Signing keys and certificates
+*.jks
+*.keystore
+
+# JVM crash logs
+hs_err_pid*.log
+replay_pid*.log
+
+# Generated backend files
+**/node_modules/
+backend/dist/
+
+# Local database and debug files
+*.sqlite
+*.db
