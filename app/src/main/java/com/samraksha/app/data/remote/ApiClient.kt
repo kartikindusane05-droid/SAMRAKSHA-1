@@ -21,11 +21,14 @@ object ApiClient {
      * Injected per build type via BuildConfig.BASE_URL (HTTPS in release, local IP in debug).
      * Can be overridden dynamically via setBaseUrl() if needed.
      */
+
     private var baseUrl: String = if (BuildConfig.BASE_URL.isNotBlank()) {
-        if (BuildConfig.BASE_URL.endsWith("/")) BuildConfig.BASE_URL else "${BuildConfig.BASE_URL}/"
+        if (BuildConfig.BASE_URL.endsWith("/")) BuildConfig.BASE_URL
+        else "${BuildConfig.BASE_URL}/"
     } else {
-        "http://10.122.145.245:5000/"
+        "https://samraksha-backend.onrender.com/"
     }
+
 
     /**
      * Token provider lambda supplied by SessionManager to inject authentication bearer tokens.
