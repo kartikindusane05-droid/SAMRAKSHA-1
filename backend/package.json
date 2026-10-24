@@ -21,16 +21,16 @@
   "author": "SAMRAKSHA Team",
   "license": "ISC",
   "dependencies": {
+    "@types/cors": "^2.8.19",
+    "@types/express": "^4.17.25",
+    "@types/node": "^26.6.5",
+    "@types/pg": "^8.23.1",
     "cors": "^2.8.5",
     "dotenv": "^16.4.5",
     "express": "^4.19.2",
     "pg": "^8.23.1"
   },
   "devDependencies": {
-    "@types/cors": "^2.8.19",
-    "@types/express": "^4.17.25",
-    "@types/node": "^20.19.43",
-    "@types/pg": "^8.23.1",
     "tsx": "^4.16.2",
     "typescript": "^5.5.2"
   }
